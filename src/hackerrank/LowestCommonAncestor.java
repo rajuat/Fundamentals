@@ -18,7 +18,6 @@ public class LowestCommonAncestor {
                 return root;
             }
         }
-
     }
 
     Node lowestCommonAncestor(Node root, int v1, int v2) {
