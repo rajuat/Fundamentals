@@ -22,6 +22,19 @@ public class InsertionSort {
         }
     }
 
+    void insertionBinSeaSort() {
+        for (int j = 2; j < arr.length; j++) {
+            int key = arr[j];
+            int i = j - 1;
+            //loop invariant is arr[0..i]
+            while (i > -1 && key < arr[i]) {
+                arr[i + 1] = arr[i];
+                i--;
+            }
+            arr[i + 1] = key;
+        }
+    }
+
     void reverseInsertionSort() {
         for (int j = 2; j < arr.length; j++) {
             int i = j - 1;
