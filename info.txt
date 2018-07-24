@@ -1,0 +1,37 @@
+Algorithm Complexity:
+Review Big-O notation . That stuff is useful every time we write an algorithm at Google, so it’s great when candidates
+understand it!
+Sorting:
+You should know the details of at least one n*log(n) sorting algorithm, preferably two (say, quicksort and merge sort).
+Merge sort can be highly useful in situations where quicksort is impractical, so take a look at it.
+Hashtables:
+Familiarise yourself with this very useful data structure! Consider when and why you might use a hash table as well as
+how they work.
+Trees:
+Know about trees; basic tree construction, traversal and manipulation algorithms. Familiarise yourself with binary
+trees, n‐ary trees, and trie‐trees. Be familiar with at least one type of balanced binary tree, whether it's a red/black tree,
+a splay tree or an AVL tree, and know how it's implemented. Understand tree traversal algorithms: BFS and DFS, and
+know the difference between inorder, postorder and preorder.
+Other data structures:
+You should study up on as many other data structures and algorithms as possible. You should especially know about
+the most famous classes of NP‐complete problems, such as traveling salesman and the knapsack problem, and be
+able to recognize them when an interviewer asks you them in disguise. Find out what NP complete means.
+Systems Design:
+Know Google's products, and think about how you would design the back-end (of front-end). System design questions
+are a test of your problem solving. Sample topics include: features sets, interfaces, class hierarchies, distributed
+systems, designing a system under certain constraints, simplicity and robustness, tradeoffs.
+Coding:
+You should know at least one programming language well, and it should preferably be Python or Java. C# is OK too,
+since it's pretty similar to Java. You will be expected to write code in at least some of your interviews. You will be
+expected to know a fair amount of detail about your favorite programming language and also be expected to produce
+code on a whiteboard - although you won’t be expected to know all of the standard libraries off by heart!
+● List of Algorithm general topics
+● List of Algorithms
+● List of Data Structures
+Classic CS problems
+Towers of Hanoi - Write a recursive program to solve this problem. What is the complexity?
+Shortest path problem - Write an algorithm to plan a route by minimising distance or time.
+Traveling salesman problem - Write an algorithm to determine the least cost round-trip, given multiple
+cities and varying costs of flights.
+Knapsack problem - Write an algorithm to optimize the value of items you can fit into a backpack based on weight and
+volume.

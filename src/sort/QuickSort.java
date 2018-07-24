@@ -17,7 +17,7 @@ public class QuickSort {
     private void quickSort(int[] arr, int start, int end) {
         if (start > end) return;
 
-        int pIndex = randomizedPartition(arr, start, end);
+        int pIndex = partition(arr, start, end);
         quickSort(arr, start, pIndex - 1);
         quickSort(arr, pIndex + 1, end);
     }
