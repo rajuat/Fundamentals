@@ -25,7 +25,7 @@ public class SubSequence {
                 }
             }
             if (isSubsequnce) {
-                indexCount.put(i, word.length());
+                indexCount.put(i, word.length()); 
             }
         }
     }
