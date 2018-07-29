@@ -16,16 +16,17 @@ Approach:
 
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Stack;
+
 
 public class CompressionDecompression {
 
-    @Test public void canDecompress(){
+    @Test
+    public void canDecompress() {
         System.out.println(decompress("3[abc]4[ab]1[c]"));
     }
 
-    String decompress(String compress){
+    String decompress(String compress) {
         StringBuilder sb = new StringBuilder();
         sb.append("1[").append(compress).append("]");
         String processedCompress = sb.toString();
@@ -34,14 +35,14 @@ public class CompressionDecompression {
 
         String finalDecompress = "";
 
-        for(char ch: processedCompress.toCharArray()){
+        for (char ch : processedCompress.toCharArray()) {
 
-            if(ch != ']'){
+            if (ch != ']') {
                 stack.push(ch);
             } else {
                 StringBuilder subSBForRepeat = new StringBuilder();
                 char popCharacter;
-                do{
+                do {
                     popCharacter = stack.pop();
                     subSBForRepeat.append(popCharacter);
                 }
@@ -53,13 +54,13 @@ public class CompressionDecompression {
                 int count = 0;
                 StringBuilder sbForNumber = new StringBuilder();
                 sbForNumber.append('0');
-                while (!stack.empty()){
+                while (!stack.empty()) {
                     char lastCharacter = stack.pop();
 
                     sbForNumber.append(lastCharacter);
-                    try{
+                    try {
                         count = Integer.parseInt(sbForNumber.toString());
-                    } catch (NumberFormatException nfe){
+                    } catch (NumberFormatException nfe) {
                         stack.push(lastCharacter);
                         break;
                     }
@@ -75,5 +76,47 @@ public class CompressionDecompression {
             }
         }
         return finalDecompress;
+    }
+
+    @Test
+    public void canDecom() {
+        decomReursively("1[3[abc]4[ab]1[c]]");
+    }
+
+    void decomReursively(String com) {
+
+        int right = com.indexOf("]"); //C0
+        if (right < 1) { //c1
+            return; //c2
+        } else { //c3
+            int left = com.substring(0, right).lastIndexOf("["); //right + left-right = left
+            String repeatableWords = com.substring(left + 1, right); //right -left
+
+            int count = 0; //c4
+            StringBuilder sbForNumber = new StringBuilder(); //c5
+            sbForNumber.append('0'); //c6
+            int newLeft = 0;//c7
+            for (int i = left - 1; i > -1; i--) { //left
+                char lastCharacter = com.charAt(i); //c7
+                sbForNumber.append(lastCharacter); //c8
+                try {
+                    count = Integer.parseInt(sbForNumber.toString());
+                } catch (NumberFormatException nfe) {
+                    newLeft = i + 1;
+                    break;
+                }
+            }
+            StringBuilder decom = new StringBuilder();
+            //decom.append(repeatableWords);
+            for (int i = 1; i <= count; i++) {
+                decom.append(repeatableWords);
+            }
+            String toBeReplace = com.substring(newLeft, right + 1);
+            String newValue = decom.toString();
+            com = com.replace(toBeReplace, newValue);
+            System.out.println(toBeReplace + " - " + newValue + " - " + com);
+            decomReursively(com);//log n times
+        }
+
     }
 }
