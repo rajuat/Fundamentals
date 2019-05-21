@@ -1,17 +1,21 @@
 package techgig;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class CandidateCode {
-    public static final Scanner scanner = new Scanner(System.in);
+    public static final Scanner scanner = new Scanner(System.in).useDelimiter("\\p{javaWhitespace}+|\\Z+");
 
     public static void main(String[] args) {
         int testCases = scanner.nextInt();
         CandidateCode candidateCode = new CandidateCode();
         for (int i = 0; i < testCases; i++) {
             int noOfNeighbours = scanner.nextInt();
+            System.out.println("No of neighbours: " + noOfNeighbours);
             int[] neighbours = candidateCode.createNeighbours(noOfNeighbours);
 
             List<Integer> evenNeighbours = new ArrayList<Integer>();
@@ -31,13 +35,17 @@ public class CandidateCode {
             int oddSum = candidateCode.createMaximizedOddNeighbours(neighbours, oddNeighbours, oddStartIndex);
 
             candidateCode.print(evenNeighbours, oddNeighbours, evenSum, oddSum);
+
         }
+        scanner.close();
     }
 
     private int[] createNeighbours(int noOfNeighbours) {
         int[] neighbours = new int[noOfNeighbours];
         for (int j = 0; j < noOfNeighbours; j++) {
-            neighbours[j] = scanner.nextInt();
+            int scan = scanner.nextInt();
+            System.out.println("scanner next int: " + scan);
+            neighbours[j] = scan;
         }
         return neighbours;
     }
