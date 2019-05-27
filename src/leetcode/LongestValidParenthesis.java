@@ -100,7 +100,6 @@ public class LongestValidParenthesis {
         if (results.get(key) != null) {
             return results.get(key).booleanValue();
         }
-        System.out.println("Calls");
         int counter = 0;
         for (int i = 0; i < s.length(); i++) {
             if (counter < 0) return false;
