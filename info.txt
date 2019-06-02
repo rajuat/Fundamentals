@@ -1,6 +1,4 @@
-Algorithm Complexity:
-Review Big-O notation . That stuff is useful every time we write an algorithm at Google, so it’s great when candidates
-understand it!
+Algorithm Complexity: Review Big-O notation.
 Sorting:
 You should know the details of at least one n*log(n) sorting algorithm, preferably two (say, quicksort and merge sort).
 Merge sort can be highly useful in situations where quicksort is impractical, so take a look at it.
