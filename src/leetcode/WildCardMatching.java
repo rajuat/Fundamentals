@@ -14,21 +14,27 @@ public class WildCardMatching {
     public boolean isMatch(String inputString, String pattern) {
         int runningInputIndex = 0;
         int starIndex = pattern.indexOf('*');
-        for (int i = 0; i < starIndex; i++) {
-            if (pattern.charAt(i) != inputString.charAt(i)) return false;
+        int inputIndex = 0;
+        for (; inputIndex < starIndex; inputIndex++) {
+            if (pattern.charAt(inputIndex) != inputString.charAt(inputIndex)) return false;
         }
         while (starIndex != -1) {
             int starNextIndex = pattern.indexOf('*', starIndex);
             if (starIndex < starNextIndex) {
                 String patternLiterals = pattern.substring(starIndex + 1, starNextIndex);
-                int i = inputString.indexOf(patternLiterals, starIndex);
-                if (i != -1) {
-                    starIndex = i + patternLiterals.length();
+                int matchingIndex = inputString.indexOf(patternLiterals, inputIndex);
+                if (matchingIndex != -1) {
+                    inputIndex = matchingIndex + patternLiterals.length();
                 } else {
                     return false;
                 }
+            } else {
+                //last star
+                for (int j = starIndex + 1; j < pattern.length(); j++, inputIndex++) {
+                    if (inputIndex < inputString.length() && pattern.charAt(j) != inputString.charAt(inputIndex)) return false;
+                }
             }
-
+            starIndex = starNextIndex;
         }
 
 
