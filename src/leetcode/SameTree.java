@@ -14,17 +14,17 @@ public class SameTree {
     }
 
 
+    boolean result = true;
     public boolean isSameTree(TreeNode p, TreeNode q) {
-
         if (p != null && q == null) return false;
         if (p == null && q != null) return false;
-        if (p == null && q == null) return true;
+        if (p == null && q == null) return result;
         if (p != null && q != null) {
-            isSameTree(p.left, q.left);
+            result = isSameTree(p.left, q.left);
             if (p.val != q.val) return false;
-            isSameTree(p.right, q.right);
+            result = isSameTree(p.right, q.right);
         }
-        return true;
+        return result;
     }
 }
 
