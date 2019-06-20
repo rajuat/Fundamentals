@@ -2,20 +2,19 @@ package cs.dijsktra;
 
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * This algorithm is based on the explaning shared here - https://www.youtube.com/watch?v=8Ls1RqHCOPw
+ */
 
 public class DijsktraShortestPath {
 
     public void findShortestPath(Graph g, Node from) {
-        int noOfNodes = g.nodes.size();
         List<List<Node>> distances = new ArrayList<>();
-        List<Node> nodes = distances.get(0);
-        nodes.set(0, from);
-        /*for (Node n : g.nodes) {
-            if (n != from) {
-                nodes.add(n);
-            }
-        }*/
-        g.nodes.stream().filter(x -> x != from).forEach(x ->nodes.add(x));
+        List<Node> startingNodes = distances.get(0);
+        startingNodes.set(0, from);
+        g.nodes.stream().filter(x -> x != from).forEach(x ->startingNodes.add(x));
+
+
 
     }
 }
