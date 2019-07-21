@@ -5,7 +5,7 @@ public class IntBuffer {
     private int index = 0;
     private int[] buffer = new int[8];
 
-    public void add(int element){
+    public synchronized void add(int element){
         while(true){
             if(index < buffer.length){
                 buffer[index++] = element;
@@ -14,7 +14,7 @@ public class IntBuffer {
         }
     }
 
-    public int delete(){
+    public synchronized int delete(){
         while(true){
             if(index > 0){
                 return buffer[--index];
