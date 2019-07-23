@@ -1,4 +1,4 @@
-package medium.com;
+package com.medium;
 
 /**
  * Created by Raju on 5/26/2018.
