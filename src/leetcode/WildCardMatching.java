@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 public class WildCardMatching {
 
+    //not fully done
     @Test
     public void canCheckForWilCardMatching() {
         assertTrue(isMatch("aabxxxbxxxba", "*ab**ba"));

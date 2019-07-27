@@ -1,8 +1,5 @@
-package leetcode;
-
-import java.util.Collections;
-import java.util.List;
-
+package leetcode.google;
+//not completed
 public class MergeKSortedList23 {
 
     public ListNode mergeKLists(ListNode[] lists) {
