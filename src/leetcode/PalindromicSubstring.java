@@ -5,13 +5,63 @@ import org.junit.Test;
 import java.util.*;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class PalindromicSubstring {
     @Test
     public void canDetermineNumberOfPalindromes() {
-        assertEquals("1", 6, countPossiblePalindromes("aaa"));
+        assertFalse(isPalindrome("ab"));
+        assertTrue(isPalindrome("arora"));
+        assertTrue(isPalindrome("arra"));
+        assertFalse(isPalindrome("abc"));
+        assertEquals("1", 6, countSubstrings("aaa"));
     }
+
+    public int countSubstrings(String s) {
+        Map<Integer, Boolean> palindromes = new HashMap<>();
+        int count = 0;
+        for (int palindromLength = 1; palindromLength <= s.length(); palindromLength++) {
+            int left = 0;
+            int right = left + palindromLength;
+            while (right <= s.length()) {
+                String substring = s.substring(left, right);
+                if (palindrome(substring, palindromes, left, right)) {
+                    count++;
+                }
+                left++;
+                right++;
+            }
+        }
+        return count;
+    }
+
+    private boolean palindrome(String s, Map<Integer, Boolean> palindromes, int left, int right) {
+        for (int i = 0; i < s.length() / 2; i++) {
+            if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {
+                return false;
+            } else {
+                int key = (left + 1) * 1000 + (right - 1);
+                if (palindromes.get(key) == Boolean.TRUE) {
+                    break;
+                }
+            }
+        }
+        palindromes.put(left * 1000 + right, Boolean.TRUE);
+        return true;
+    }
+
+    private boolean isPalindrome(String s) {
+        for (int i = 0; i < s.length() / 2; i++) {
+            if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+/*
 
     private int countPossiblePalindromes(String s) {
         int counter = 0;
@@ -77,4 +127,5 @@ public class PalindromicSubstring {
             singleCounts.add(input[i]);
         }
     }
+*/
 }

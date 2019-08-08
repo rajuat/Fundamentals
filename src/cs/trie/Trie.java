@@ -62,6 +62,7 @@ public class Trie {
                 runner = node;
             }
         }
+
         return exact ? runner.endOfWord : true;
     }
 
