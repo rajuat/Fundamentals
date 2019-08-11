@@ -16,6 +16,7 @@ public class NumMatrixTest {
         };
         NumMatrix obj = new NumMatrix(matrix);
         int param_2 = obj.sumRegion(2, 1, 4, 3);
+        assertEquals(19, obj.sumRegion(1, 1, 4, 3));
         obj.update(3, 2, 2);
         int param_3 = obj.sumRegion(2, 1, 4, 3);
         assertEquals(8, param_2);
