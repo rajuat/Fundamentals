@@ -12,8 +12,8 @@ public class StrobogrammaticNumber2 {
     @Test
     public void printStrobograms() {
         long s = System.nanoTime();
-        int c = findStrobogrammatic(6).size();
-        System.out.println("Secs: " + (System.nanoTime() - s) / 1000000000);
+        int c = findStrobogrammatic(5).size();
+        System.out.println("Secs: " + (System.nanoTime() - s) / 1000);
         System.out.println("List size: " + c);
         /*s = System.nanoTime();
         findStrobogrammatic2(2);
@@ -27,24 +27,28 @@ public class StrobogrammaticNumber2 {
         int lowest = n == 1 ? 0 : base + 1;
         int highest = (int) Math.pow(10, n);
         int count = 0;
+        int s = 0;
         for (int i = lowest; i < highest; ) {
             count++;
             String num = String.valueOf(i);
             if (isStrobogrammatic(num)) {
-                System.out.println(num);
+                //System.out.println(num);
                 res.add(num);
             }
+            int start = i;
             for (int j = 1; j < base; j = j * 10) {
                 i = skips(base / j, i);
             }
             i = unitPlaceSkip(i);
+            s = s + i - start;
         }
+        System.out.println("Skips: " + s);
         System.out.println("Count: " + count);
         return res;
     }
 
-
     private int skips(int base, int i) {
+        if (base < 10) return i;
         int digit = i / base;
         int lastNumber = ((digit + 1) * base) - 1;
         digit = digit % 10;
@@ -53,9 +57,9 @@ public class StrobogrammaticNumber2 {
         } else if (digit == 6 && i == lastNumber) {
             i = i + 1 + base;
         }
-        return i;
+        //return i;
+        return skips(base / 10, i);
     }
-
 
     private int unitPlaceSkip(int digit) {
         int unitDigit = digit % 10;
