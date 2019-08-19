@@ -13,7 +13,10 @@ public class NextPermutation {
         int[] nums = {1, 2, 3};
         nextPermutation(nums);
         assertEquals("[1, 3, 2]", Arrays.toString(nums));
+    }
 
+    @Test
+    public void test() {
         int[] nums2 = {3, 2, 1};
         nextPermutation(nums2);
         assertEquals("[1, 2, 3]", Arrays.toString(nums2));
@@ -35,40 +38,52 @@ public class NextPermutation {
 
     }
 
-    public void nextPermutation(int[] nums) {
-        for (int i = nums.length - 1; i > 0; i--) {
-            int maxIndex = -1;
-            int max = Integer.MIN_VALUE;
-            for (int j = i - 1; j >= 0; j--) {
-                if (nums[j] < nums[i]) {
-                    if (maxIndex != Integer.MIN_VALUE && maxIndex == j + 1) {
-                        swap(nums, i, j);
-                        if (i - j > 1 || j == 0) {
-                            Arrays.sort(nums, j + 1, nums.length);
-                        }
-                        return;
-                    } else {
-                        swap(nums, j + 1, maxIndex);
-                        if (j + 2 < nums.length) {
-                            Arrays.sort(nums, j + 2, nums.length);
-                        }
-                        return;
-                    }
-                }
-                if (nums[j] > max) {
-                    maxIndex = j;
-                    max = nums[j];
-                }
-            }
-        }
-        Arrays.sort(nums);
+    @Test
+    public void test4() {
+        int[] nums3 = {1, 3, 2};
+        nextPermutation(nums3);
+        assertEquals("[2, 1, 3]", Arrays.toString(nums3));
+
     }
 
-    private void swap(int[] nums, int i, int j) {
+    public void nextPermutation(int[] nums) {
+        int i = nums.length - 1;
+        while (i > 0) {
+            if (nums[i - 1] < nums[i]) {
+                searchAndSwap(nums, i - 1, nums.length - 1);
+                break;
+            }
+            i--;
+        }
+        reverse(nums, i);
+    }
+
+    private void reverse(int[] nums, int i) {
+        int j = nums.length - 1;
+        for (int k = 0; k <= (j - i) / 2; k++) {
+            swap(nums, k + i, j - k);
+        }
+    }
+
+    private void searchAndSwap(int[] nums, int start, int end) {
+        int i = start;
+        while (start < end && nums[i] < nums[start + 1]) {
+            start++;
+        }
+        swap(nums, start, i);
+    }
+
+    private void swap(int[] nums, int j, int i) {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
     }
+    /*
+    scan from right to 1 : i
+    when val at i-1 is smaller than i
+    look from i to end and replace i-1 with j, such that val at j is just greater than i-1
+    reverse the subarray from i to end
+    */
 
 
 }
