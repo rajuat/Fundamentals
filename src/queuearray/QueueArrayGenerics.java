@@ -30,6 +30,10 @@ public class QueueArrayGenerics<T> {
         currentSize++;
     }
 
+    public boolean isEmpty(){
+        return currentSize == 0;
+    }
+
     public T dequeue(){
         if(currentSize == 0){
             System.out.println("Queue is empty");
