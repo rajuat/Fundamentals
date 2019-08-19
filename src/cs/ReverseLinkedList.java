@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class ReverseLinkedList {
     @Test
-    public void reverse(){
+    public void reverse() {
         ListNode a = new ListNode(1);
         ListNode b = new ListNode(2);
         ListNode c = new ListNode(3);
@@ -22,27 +22,19 @@ public class ReverseLinkedList {
             r = r.next;
         }*/
         System.out.println("----");
-        ListNode rr = reverseList(a);
-        while (rr != null){
-            System.out.println(rr.value);
-            rr = rr.next;
+        ListNode aa = reverseList(a);
+        while (a != null) {
+            System.out.println(a.value);
+            a = a.next;
         }
     }
 
 
-    class ListNode{
-        int value;
-        ListNode next;
-        ListNode(int value){
-            this.value = value;
-        }
-    }
-
-    ListNode reverseList(ListNode head){
-        ListNode previous = null;
-        ListNode current = head;
-        ListNode next = null;
-        while(current != null){
+    ListNode reverseList(ReverseLinkedList.ListNode head) {
+        ReverseLinkedList.ListNode current = head;
+        ReverseLinkedList.ListNode previous = null;
+        ReverseLinkedList.ListNode next = null;
+        while (current != null) {
             next = current.next;
             current.next = previous;
             previous = current;
@@ -51,10 +43,33 @@ public class ReverseLinkedList {
         return previous;
     }
 
-    ListNode reverse(ListNode head){
+
+    public class ListNode {
+        int value;
+        ListNode next;
+
+        public ListNode(int value) {
+            this.value = value;
+        }
+    }
+
+    ListNode reverseLists(ListNode head) {
+        ListNode previous = null;
+        ListNode current = head;
+        ListNode next = null;
+        while (current != null) {
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+        return previous;
+    }
+
+    ListNode reverse(ListNode head) {
         ListNode previous = head;
         ListNode current = previous.next;
-        while(current != null){
+        while (current != null) {
             ListNode temp = current.next;
             current.next = previous;
             previous = current;
