@@ -9,20 +9,25 @@ import static org.junit.Assert.assertEquals;
 public class DecodeString {
     @Test
     public void test1() {
-        assertEquals("aaabcbc", decode("3[a]2[bc]"));
+        assertEquals("aaabcbc", decodeString("3[a]2[bc]"));
     }
 
     @Test
     public void test2() {
-        assertEquals("accaccacc", decode("3[a2[c]]"));
+        assertEquals("accaccacc", decodeString("3[a2[c]]"));
     }
 
     @Test
     public void test3() {
-        assertEquals("abcabccdcdcdef", decode("2[abc]3[cd]ef"));
+        assertEquals("abcabccdcdcdef", decodeString("2[abc]3[cd]ef"));
     }
 
-    public String decode(String s) {
+    @Test
+    public void test4() {
+        assertEquals("zzzyypqjkjkefjkjkefjkjkefjkjkefyypqjkjkefjkjkefjkjkefjkjkefef", decodeString("3[z]2[2[y]pq4[2[jk]e1[f]]]ef"));
+    }
+
+    public String decodeString(String s) {
         StringBuilder ans = new StringBuilder();
         Stack<Character> stack = new Stack();
         for (char c : s.toCharArray()) {
@@ -39,15 +44,10 @@ public class DecodeString {
                     count = count + Character.getNumericValue(stack.pop()) * mul;
                     mul *= 10;
                 }
-                if (!stack.isEmpty() && Character.isLetter(stack.peek())) {
-                    for (int i = 0; i < count; i++) {
-                        for (char ch : word.toCharArray())
-                            stack.add(ch);
-                    }
-                } else for (int i = 0; i < count; i++) {
-                    ans.append(word);
+                for (int i = 0; i < count; i++) {
+                    for (char ch : word.toCharArray())
+                        stack.add(ch);
                 }
-
             } else {
                 stack.add(c);
             }
@@ -59,6 +59,4 @@ public class DecodeString {
         ans.append(sb.reverse().toString());
         return ans.toString();
     }
-
-
 }
