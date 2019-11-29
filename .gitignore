@@ -1,6 +1,10 @@
-*.class
-.idea*
-lib*
-out*
-*.iml
-*.pdf
+# Ignore Gradle project-specific cache directory
+.gradle
+.idea
+.DS_Store
+gradlew*
+
+
+# Ignore Gradle build output directory
+build
+gradle

@@ -10,6 +10,7 @@ public class BinarySearch {
     int[] A = {3, 4, 6, 8, 9, 3, 7, 4, 2};
     int val = 7;
     int index = -1;
+
     @Test
     public void canBinSea() {
         new MergeSort().sort(A);
