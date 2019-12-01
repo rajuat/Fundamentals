@@ -1,4 +1,4 @@
-package pie.producerconsumer;
+package producerconsumer;
 
 public class Consumer extends Thread {
 

@@ -1,4 +1,4 @@
-package pie.producerconsumer;
+package producerconsumer;
 
 import org.junit.Test;
 
